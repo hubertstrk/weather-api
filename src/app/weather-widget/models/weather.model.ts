@@ -1,28 +1,101 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { take, map, Observable } from 'rxjs';
-import { WeatherForecats } from '../weather.model';
-import { environment } from '../../../envrionment/envrionment';
+export interface Weather {
+  lat: number;
+  lon: number;
+  timezone: string;
+  timezone_offset: number;
+  current: CurrentWeather;
+  daily: DailyWeather[];
+  city: City;
+}
 
-@Injectable({ providedIn: 'root' })
-export class WeatherService {
-  constructor(private httpClient: HttpClient) {}
+export interface WeatherWithLocation {
+  weather: Weather;
+  location: CityLocation;
+}
 
-  getWeatherData(): Observable<WeatherForecats> {
-    return this.httpClient
-      .get<WeatherForecats>(
-        `https://api.openweathermap.org/data/2.5/forecast?q=London&appid=${environment.apiKey}`
-      )
-      .pipe(
-        take(1),
-        map(response => {
-          response.list.map(item => {
-            const foo = new Date(item.dt_txt).toLocaleString();
-            console.info(foo);
-          });
+export interface CurrentWeather {
+  dt: number;
+  sunrise: number;
+  sunset: number;
+  temp: number;
+  feels_like: number;
+  pressure: number;
+  humidity: number;
+  dew_point: number;
+  uvi: number;
+  clouds: number;
+  visibility: number;
+  wind_speed: number;
+  wind_deg: number;
+  wind_gust: number;
+  weather: WeatherCondition[];
+}
 
-          return response;
-        })
-      );
-  }
+export interface DailyWeather {
+  dt: number;
+  sunrise: number;
+  sunset: number;
+  moonrise: number;
+  moonset: number;
+  moon_phase: number;
+  summary: string;
+  temp: Temperature;
+  feels_like: FeelsLike;
+  pressure: number;
+  humidity: number;
+  dew_point: number;
+  wind_speed: number;
+  wind_deg: number;
+  wind_gust: number;
+  weather: WeatherCondition[];
+  clouds: number;
+  pop: number;
+  uvi: number;
+}
+
+export interface Temperature {
+  day: number;
+  min: number;
+  max: number;
+  night: number;
+  eve: number;
+  morn: number;
+}
+
+export interface FeelsLike {
+  day: number;
+  night: number;
+  eve: number;
+  morn: number;
+}
+
+export interface WeatherCondition {
+  id: number;
+  main: string;
+  description: string;
+  icon: string;
+}
+
+export interface City {
+  id: number;
+  name: string;
+  coord: Coordinate;
+  country: string;
+  population: number;
+  timezone: number;
+}
+
+export interface Coordinate {
+  lat: number;
+  lon: number;
+}
+
+// New model for the outcome of the service function getLocationByName
+export interface CityLocation {
+  name: string;
+  local_names: { [key: string]: string };
+  lat: number;
+  lon: number;
+  country: string;
+  state?: string;
 }

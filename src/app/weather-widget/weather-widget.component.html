@@ -1,14 +1,46 @@
-<svg
-  width="100"
-  height="100"
-  viewBox="0 0 100 100"
-  xmlns="http://www.w3.org/2000/svg">
-  <!-- Sun -->
-  <circle cx="40" cy="40" r="15" fill="yellow" fill-opacity="0.8" />
-
-  <!-- Fluffy Cloud Shape with Three Lobes -->
-  <path
-    d="M30 60 C25 55, 20 55, 20 50 C20 45, 30 40, 40 45 C50 40, 60 40, 65 45 C70 50, 65 55, 65 60 C60 65, 50 65, 45 60 C40 65, 35 65, 30 60 Z"
-    fill="lightgray"
-    fill-opacity="0.8" />
-</svg>
+<div
+  *ngIf="weatherData"
+  class="flex flex-column h-full w-full bg-bluegray-900 text-white p-4 rounded-lg shadow-lg">
+  <div
+    class="flex align-items-center justify-content-between p-2 border-b border-gray-700">
+    <div class="flex align-items-center">
+      <span class="pi pi-map-marker"></span>
+      <div class="text-lg font-semibold ml-2">
+        {{ weatherData.location.name }}
+      </div>
+    </div>
+    <div class="text-lg text-gray-400">
+      {{ weatherData.weather.current.weather[0].description }}
+    </div>
+  </div>
+  <div
+    class="flex align-items-center justify-content-between p-2 border-b border-gray-700">
+    <div class="text-7xl font-bold">
+      {{
+        convertKelvinToCelsius(weatherData.weather.current.temp)
+          | number: '1.1-1'
+      }}°C
+    </div>
+    <div>
+      <img
+        [src]="
+          'assets/icons/' + weatherData.weather.current.weather[0].icon + '.svg'
+        "
+        alt="Weather Icon"
+        class="w-12 h-12" />
+    </div>
+  </div>
+  <div class="flex flex-wrap align-items-center justify-content-between p-2">
+    <p-chip
+      label="Druck: {{ weatherData.weather.current.pressure }} hPa"></p-chip>
+    <p-chip
+      label="Feuchte: {{ weatherData.weather.current.humidity }}%"></p-chip>
+    <p-chip
+      label="Wind: {{ weatherData.weather.current.wind_speed }} m/s"></p-chip>
+    <p-chip
+      label="Taupunkt: {{
+        convertKelvinToCelsius(weatherData.weather.current.dew_point)
+          | number: '1.1-1'
+      }}"></p-chip>
+  </div>
+</div>
