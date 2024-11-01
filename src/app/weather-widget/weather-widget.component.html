@@ -35,7 +35,9 @@
     <div class="flex align-items-center justify-content-center">
       <img
         [src]="
-          'assets/icons/' + weatherData.weather.current.weather[0].icon + '.svg'
+          'assets/icons/open-weather/outlined/' +
+          weatherData.weather.current.weather[0].icon +
+          '.svg'
         "
         alt="Weather Icon"
         class="w-12 h-12 glow-effect" />
@@ -69,10 +71,13 @@
       label="Taupunkt: {{
         convertKelvinToCelsius(weatherData.weather.current.dew_point)
           | number: '1.1-1'
-      }}"></p-chip>
+      }}°C"></p-chip>
   </div>
 
   <div class="custom-divider"></div>
+
+  <app-weather-forecast
+    [forecast]="weatherData.weather.daily"></app-weather-forecast>
 </div>
 
 <!-- <div class="flex align-items-center">

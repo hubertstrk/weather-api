@@ -4,11 +4,11 @@
 
 .custom-divider {
   border-top: 1px solid rgba(119, 119, 119, 0.7);
-  margin: 30px 0;
+  margin: 15px 0;
 }
 
 .temperature-dynamic-size {
-  font-size: clamp(2rem, 4vw, 10rem);
+  font-size: clamp(2rem, 3vw, 8rem);
 }
 
 .location-dynamic-size {

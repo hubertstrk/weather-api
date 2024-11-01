@@ -1,0 +1,23 @@
+<div *ngIf="forecast" class="p-2">
+  <div class="flex flex-column">
+    <div>
+      <img
+        [src]="
+          'assets/icons/open-weather/outlined/' +
+          forecast.weather[0].icon +
+          '.svg'
+        "
+        alt="Weather Icon"
+        class="w-5 h-5 glow-effect" />
+    </div>
+    <div>
+      <div>
+        {{ forecast.dt * 1000 | date: 'dd.MM' }}
+      </div>
+      <div>
+        {{ convertKelvinToCelsius(forecast.temp.day) | number: '1.1-1' }}°C
+      </div>
+      <div>{{ forecast.wind_speed }}m/s</div>
+    </div>
+  </div>
+</div>

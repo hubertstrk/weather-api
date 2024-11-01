@@ -1,0 +1,5 @@
+<div *ngIf="forecast" class="flex p-3">
+  <app-forecast-widget
+    *ngFor="let item of items"
+    [forecast]="item"></app-forecast-widget>
+</div>

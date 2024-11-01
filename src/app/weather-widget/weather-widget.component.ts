@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ChipModule } from 'primeng/chip';
 import { DividerModule } from 'primeng/divider';
+import { WeatherForecastComponent } from '../weather-forecast/weather-forecast.component';
 import { WeatherWithLocation } from './models/weather.model';
 import { WeatherService } from './weather.service';
 
@@ -10,7 +11,7 @@ import { WeatherService } from './weather.service';
   standalone: true,
   templateUrl: './weather-widget.component.html',
   styleUrls: ['./weather-widget.component.scss'],
-  imports: [CommonModule, ChipModule, DividerModule], // Add ChipsModule to imports
+  imports: [CommonModule, ChipModule, DividerModule, WeatherForecastComponent], // Add ChipsModule to imports
 })
 export class WeatherWidgetComponent implements OnInit {
   weatherData: WeatherWithLocation | null = null;
