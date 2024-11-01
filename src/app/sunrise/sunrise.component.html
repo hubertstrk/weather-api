@@ -1,0 +1,10 @@
+<div *ngIf="sunrise && sunset" class="flex align-items-center">
+  <div class="text-sm flex align-items-center">
+    <span class="pi pi-sun"></span>
+    <span class="ml-2">{{ convertUnixTimeToLocalTime(sunrise) }}</span>
+  </div>
+  <div class="text-sm flex align-items-center mx-4">
+    <span class="pi pi-moon"></span>
+    <span class="ml-2">{{ convertUnixTimeToLocalTime(sunset) }}</span>
+  </div>
+</div>

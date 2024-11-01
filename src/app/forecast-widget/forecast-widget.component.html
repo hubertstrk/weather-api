@@ -6,7 +6,7 @@
         forecast.weather[0].icon +
         '.svg'
       "
-      alt="Weather Icon"
+      alt="weather"
       class="w-4rem h-4rem glow-effect" />
   </div>
   <div class="flex flex-column align-items-center">
@@ -14,6 +14,6 @@
       {{ forecast.dt * 1000 | date: 'dd.MM' }}
     </div>
     <div>{{ forecast.temp.day | kelvinToCelsius: 1 }}°C</div>
-    <div>{{ forecast.wind_speed }}m/s</div>
+    <div>{{ forecast.pop * 100 }} %</div>
   </div>
 </div>

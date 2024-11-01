@@ -4,6 +4,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { ChipModule } from 'primeng/chip';
 import { DividerModule } from 'primeng/divider';
 import { KelvinToCelsiusPipe } from '../conversion.pipe';
+import { SunriseComponent } from '../sunrise/sunrise.component';
 import { TemperatureChartComponent } from '../temperature-chart/temperature-chart.component';
 import { WeatherDetailValuesComponent } from '../weather-detail-values/weather-detail-values.component';
 import { WeatherForecastComponent } from '../weather-forecast/weather-forecast.component';
@@ -21,6 +22,7 @@ import { WeatherService } from './weather.service';
     DividerModule,
     KelvinToCelsiusPipe,
     WeatherForecastComponent,
+    SunriseComponent,
     WeatherDetailValuesComponent,
     TemperatureChartComponent,
     AccordionModule,
@@ -36,15 +38,6 @@ export class WeatherWidgetComponent implements OnInit {
   ngOnInit(): void {
     this.weatherService.getCurrentByName('Schwandorf').subscribe(data => {
       this.weatherData = data;
-    });
-  }
-
-  convertUnixTimeToLocalTime(unixTime: number): string {
-    // convert unit time to hh-mm
-    const date = new Date(unixTime * 1000);
-    return date.toLocaleTimeString('de-DE', {
-      hour: '2-digit',
-      minute: '2-digit',
     });
   }
 }
