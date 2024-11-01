@@ -1,4 +1,6 @@
-<div *ngIf="forecast" class="flex p-3">
+<div
+  *ngIf="forecast"
+  class="flex align-items-center justify-content-center p-3">
   <app-forecast-widget
     *ngFor="let item of items"
     [forecast]="item"></app-forecast-widget>

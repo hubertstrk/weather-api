@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ChipModule } from 'primeng/chip';
 import { DividerModule } from 'primeng/divider';
+import { KelvinToCelsiusPipe } from '../conversion.pipe';
+import { WeatherDetailValuesComponent } from '../weather-detail-values/weather-detail-values.component';
 import { WeatherForecastComponent } from '../weather-forecast/weather-forecast.component';
 import { WeatherWithLocation } from './models/weather.model';
 import { WeatherService } from './weather.service';
@@ -11,7 +13,14 @@ import { WeatherService } from './weather.service';
   standalone: true,
   templateUrl: './weather-widget.component.html',
   styleUrls: ['./weather-widget.component.scss'],
-  imports: [CommonModule, ChipModule, DividerModule, WeatherForecastComponent], // Add ChipsModule to imports
+  imports: [
+    CommonModule,
+    ChipModule,
+    DividerModule,
+    WeatherForecastComponent,
+    WeatherDetailValuesComponent,
+    KelvinToCelsiusPipe,
+  ],
 })
 export class WeatherWidgetComponent implements OnInit {
   weatherData: WeatherWithLocation | null = null;
@@ -19,13 +28,9 @@ export class WeatherWidgetComponent implements OnInit {
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {
-    this.weatherService.getCurrentByName('Hawai').subscribe(data => {
+    this.weatherService.getCurrentByName('Christchurch').subscribe(data => {
       this.weatherData = data;
     });
-  }
-
-  convertKelvinToCelsius(kelvin: number): number {
-    return kelvin - 273.15;
   }
 
   convertUnixTimeToLocalTime(unixTime: number): string {

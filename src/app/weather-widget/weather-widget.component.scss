@@ -1,5 +1,5 @@
 .glow-effect {
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7));
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.7));
 }
 
 .custom-divider {
@@ -8,9 +8,5 @@
 }
 
 .temperature-dynamic-size {
-  font-size: clamp(2rem, 3vw, 8rem);
-}
-
-.location-dynamic-size {
-  font-size: clamp(1rem, 2vw, 5rem);
+  font-size: clamp(2rem, 4vw, 8rem);
 }

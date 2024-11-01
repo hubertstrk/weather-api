@@ -17,6 +17,6 @@ export class WeatherForecastComponent implements OnInit {
   items: DailyWeather[] = [];
 
   ngOnInit(): void {
-    this.items = take(this.forecast, 5);
+    this.items = take(this.forecast, 8);
   }
 }

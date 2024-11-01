@@ -5,31 +5,25 @@
     class="flex align-items-center justify-content-between p-2 border-b border-gray-700">
     <div class="flex flex-column">
       <div class="flex align-items-center">
-        <span class="pi pi-map-marker location-dynamic-size"></span>
-        <div class="font-semibold ml-3 location-dynamic-size">
+        <span class="pi pi-map-marker"></span>
+        <div class="text-2xl font-semibold ml-3">
           {{ weatherData.location.name }}, {{ weatherData.location.country }}
         </div>
       </div>
     </div>
-    <div class="text-lg text-gray-400">
+    <div class="text-lg">
       {{ weatherData.weather.current.weather[0].description }}
     </div>
   </div>
   <div
     class="flex align-items-center justify-content-between p-2 border-b border-gray-700">
     <div class="flex flex-column">
-      <div class="font-bold temperature-dynamic-size">
-        {{
-          convertKelvinToCelsius(weatherData.weather.current.temp)
-            | number: '1.1-1'
-        }}°C
+      <div class="font-bold temperature-dynamic-size glow-effect">
+        {{ weatherData.weather.current.temp | kelvinToCelsius: 1 }}°C
       </div>
-      <div class="text-sm">
+      <div class="text-lg">
         Gefühlt:
-        {{
-          convertKelvinToCelsius(weatherData.weather.current.feels_like)
-            | number: '1.1-1'
-        }}°C
+        {{ weatherData.weather.current.feels_like | kelvinToCelsius: 1 }}°C
       </div>
     </div>
     <div class="flex align-items-center justify-content-center">
@@ -43,36 +37,9 @@
         class="w-12 h-12 glow-effect" />
     </div>
   </div>
-  <div class="flex flex-wrap align-items-center justify-content-between p-2">
-    <p-chip
-      styleClass="text-lg"
-      class="p-2"
-      image="assets/icons/barometer.svg"
-      label="{{ weatherData.weather.current.pressure }} hPa"></p-chip>
-    <p-chip
-      styleClass="text-lg"
-      class="p-2"
-      image="assets/icons/humidity.svg"
-      label="{{ weatherData.weather.current.humidity }}%"></p-chip>
-    <p-chip
-      styleClass="text-lg"
-      class="p-2"
-      image="assets/icons/windsock.svg"
-      label="{{ weatherData.weather.current.wind_speed }} m/s"></p-chip>
-    <p-chip
-      styleClass="text-lg"
-      class="p-2"
-      image="assets/icons/uv-index.svg"
-      label="UV-Index: {{ weatherData.weather.current.uvi }}"></p-chip>
-    <p-chip
-      styleClass="text-lg"
-      class="p-2"
-      image="assets/icons/thermometer-celsius.svg"
-      label="Taupunkt: {{
-        convertKelvinToCelsius(weatherData.weather.current.dew_point)
-          | number: '1.1-1'
-      }}°C"></p-chip>
-  </div>
+
+  <app-weather-detail-values
+    [weatherData]="weatherData"></app-weather-detail-values>
 
   <div class="custom-divider"></div>
 

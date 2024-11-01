@@ -1,0 +1,31 @@
+<div
+  *ngIf="weatherData"
+  class="flex flex-wrap align-items-center justify-content-between p-2">
+  <p-chip
+    styleClass="text-lg"
+    class="p-2"
+    image="assets/icons/barometer.svg"
+    label="{{ weatherData.weather.current.pressure }} hPa"></p-chip>
+  <p-chip
+    styleClass="text-lg"
+    class="p-2"
+    image="assets/icons/humidity.svg"
+    label="{{ weatherData.weather.current.humidity }}%"></p-chip>
+  <p-chip
+    styleClass="text-lg"
+    class="p-2"
+    image="assets/icons/windsock.svg"
+    label="{{ weatherData.weather.current.wind_speed }} m/s"></p-chip>
+  <p-chip
+    styleClass="text-lg"
+    class="p-2"
+    image="assets/icons/uv-index.svg"
+    label="UV-Index: {{ weatherData.weather.current.uvi }}"></p-chip>
+  <p-chip
+    styleClass="text-lg"
+    class="p-2"
+    image="assets/icons/thermometer-celsius.svg"
+    label="Taupunkt: {{
+      weatherData.weather.current.dew_point | kelvinToCelsius | number: '1.1-1'
+    }}°C"></p-chip>
+</div>
