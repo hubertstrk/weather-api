@@ -5,6 +5,7 @@ export interface Weather {
   timezone_offset: number;
   current: CurrentWeather;
   daily: DailyWeather[];
+  hourly: HourlyWeather[];
   city: City;
 }
 
@@ -51,6 +52,23 @@ export interface DailyWeather {
   clouds: number;
   pop: number;
   uvi: number;
+}
+
+export interface HourlyWeather {
+  dt: number;
+  temp: number;
+  feels_like: number;
+  pressure: number;
+  humidity: number;
+  dew_point: number;
+  uvi: number;
+  clouds: number;
+  visibility: number;
+  wind_speed: number;
+  wind_deg: number;
+  wind_gust: number;
+  weather: WeatherCondition[];
+  pop: number;
 }
 
 export interface Temperature {

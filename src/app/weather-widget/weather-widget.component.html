@@ -1,9 +1,8 @@
 <div
   *ngIf="weatherData"
-  class="flex flex-column h-full w-full bg-bluegray-900 text-white p-4 rounded-lg shadow-lg">
-  <div
-    class="flex align-items-center justify-content-between p-2 border-b border-gray-700">
-    <div class="flex flex-column">
+  class="weather-component flex flex-column h-full w-full bg-bluegray-900 text-white p-4 rounded-lg shadow-lg">
+  <div class="grid flex justify-content-between border-b border-gray-700">
+    <div class="col-12 md:col-6 flex-column">
       <div class="flex align-items-center">
         <span class="pi pi-map-marker"></span>
         <div class="text-2xl font-semibold ml-3">
@@ -11,13 +10,13 @@
         </div>
       </div>
     </div>
-    <div class="text-lg">
+    <div class="col-12 md:col-6 flex justify-content-end">
       {{ weatherData.weather.current.weather[0].description }}
     </div>
   </div>
-  <div
-    class="flex align-items-center justify-content-between p-2 border-b border-gray-700">
-    <div class="flex flex-column">
+
+  <div class="grid flex align-items-center p-2 border-b border-gray-700">
+    <div class="col-12 md:col-6 flex-column flex flex-column">
       <div class="font-bold temperature-dynamic-size glow-effect">
         {{ weatherData.weather.current.temp | kelvinToCelsius: 1 }}°C
       </div>
@@ -26,7 +25,8 @@
         {{ weatherData.weather.current.feels_like | kelvinToCelsius: 1 }}°C
       </div>
     </div>
-    <div class="flex align-items-center justify-content-center">
+    <div
+      class="col-12 md:col-6 flex-column flex align-items-center justify-content-center">
       <img
         [src]="
           'assets/icons/open-weather/outlined/' +
@@ -34,7 +34,7 @@
           '.svg'
         "
         alt="Weather Icon"
-        class="w-12 h-12 glow-effect" />
+        class="w-16rem h-16rem glow-effect" />
     </div>
   </div>
 
@@ -45,19 +45,10 @@
 
   <app-weather-forecast
     [forecast]="weatherData.weather.daily"></app-weather-forecast>
+
+  <div class="custom-divider"></div>
+
+  <app-temperature-chart
+    class="px-2 py-4"
+    [hourly]="weatherData.weather.hourly"></app-temperature-chart>
 </div>
-
-<!-- <div class="flex align-items-center">
-  <img [src]="'assets/icons/sunrise.svg'" alt="sunrise" class="w-1 h-1" />
-  <span class="ml-2 text-sm">
-    {{ convertUnixTimeToLocalTime(weatherData.weather.current.sunrise) }}
-  </span>
-
-  <img
-    [src]="'assets/icons/sunrise.svg'"
-    alt="sunrise"
-    class="w-1 h-1 ml-4" />
-  <span class="ml-2 text-sm">
-    {{ convertUnixTimeToLocalTime(weatherData.weather.current.sunrise) }}
-  </span>
-</div> -->

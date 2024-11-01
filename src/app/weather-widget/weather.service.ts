@@ -17,7 +17,7 @@ export class WeatherService {
       switchMap((city: CityLocation) => {
         return this.httpClient
           .get<Weather>(
-            `https://api.openweathermap.org/data/3.0/onecall?lat=${city.lat}&lon=${city.lon}&exclude=minutely,hourly&&lang=de&appid=${environment.apiKey}`
+            `https://api.openweathermap.org/data/3.0/onecall?lat=${city.lat}&lon=${city.lon}&exclude=minutely&lang=de&appid=${environment.apiKey}`
           )
           .pipe(
             map(weather => ({
