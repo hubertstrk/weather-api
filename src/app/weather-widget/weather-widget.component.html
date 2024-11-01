@@ -5,8 +5,8 @@
     class="flex align-items-center justify-content-between p-2 border-b border-gray-700">
     <div class="flex flex-column">
       <div class="flex align-items-center">
-        <span class="pi pi-map-marker"></span>
-        <div class="text-lg font-semibold ml-2">
+        <span class="pi pi-map-marker location-dynamic-size"></span>
+        <div class="font-semibold ml-3 location-dynamic-size">
           {{ weatherData.location.name }}, {{ weatherData.location.country }}
         </div>
       </div>
@@ -18,7 +18,7 @@
   <div
     class="flex align-items-center justify-content-between p-2 border-b border-gray-700">
     <div class="flex flex-column">
-      <div class="text-7xl font-bold">
+      <div class="font-bold temperature-dynamic-size">
         {{
           convertKelvinToCelsius(weatherData.weather.current.temp)
             | number: '1.1-1'
